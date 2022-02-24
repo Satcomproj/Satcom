@@ -1,0 +1,436 @@
+swagger: "2.0"
+info:
+  description: "Satsang Communication Centre"
+  version: "1.0.0"
+  title: "Satsang communication centre API guide"
+host: "satsang.swagger.io"
+basePath: "/v2"
+schemes:
+- "http"
+paths:
+  /v1/devotee:
+    post:
+      tags:
+      - "Devotee"
+      summary: "Create devotee for the first time"
+      description: "First time when a devotee calls, this API will be used to create an devotee record"
+      operationId: "createdevotee"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created devotee object"
+        required: true
+        schema:
+          $ref: "#/definitions/Devotee"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "Devotee"
+      summary: "update devotee details"
+      description: "First time when a devotee calls, this API will be used to create an devotee record"
+      operationId: "updatedevotee"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created devotee object"
+        required: true
+        schema:
+          $ref: "#/definitions/Devotee"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/devotee/{ID}:
+    get:
+      tags:
+      - "Devotee"
+      summary: "Get devotee details"
+      description: "Get devotee data along with past nivedans"
+      operationId: "getdevotee"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: ID
+        in: path
+        description: devotee unique ID
+        type: "string"
+        required: true
+      responses:
+        default:
+          description: "successful operation"
+  /v1/operator/login:
+    post:
+      tags:
+      - "Operator"
+      summary: "Login "
+      description: "Operator login success returns operator details along with role"
+      operationId: "Operatorlogin"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Login object"
+        required: true
+        schema:
+          $ref: "#/definitions/Login"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            items:
+              $ref: "#/definitions/Operator"
+  /v1/operator/{operatorId}/logoff:
+    get:
+      tags:
+      - "Operator"
+      summary: "Login "
+      description: "Operator Logoff"
+      operationId: "OperatorLogoff"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "operatorId"
+        description: "operator id"
+        type: "string"
+        required: true
+      responses:
+        "200":
+          description: "successful operation"
+  /v1/operator:
+    post:
+      tags:
+      - "Operator"
+      summary: "register operator (Admin / Caller / Solver )for the first time"
+      description: ""
+      operationId: "registerOperator"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created operator object"
+        required: true
+        schema:
+          $ref: "#/definitions/Operator"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "Operator"
+      summary: "update Operator details"
+      description: ""
+      operationId: "updateOperator"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created devotee object"
+        required: true
+        schema:
+          $ref: "#/definitions/Operator"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/operator/{ID}:
+    get:
+      tags:
+      - "Operator"
+      summary: "Get Operator details"
+      description: "Get Operator data"
+      operationId: "getOperator"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: ID
+        in: path
+        description: Operator unique ID
+        type: "string"
+        required: true
+      responses:
+        default:
+          description: "successful operation"
+  /v1/nivedan:
+    get:
+      tags:
+      - "Nivedan"
+      summary: "Get all nivedan details matching query"
+      description: "Get Operator data"
+      operationId: "getNivedan"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: status
+        type: "string"
+        in: query
+        description: status of the nivedan (pending / solved)
+        required: false
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "Nivedan"
+      summary: "Create nivedan for the first time"
+      description: ""
+      operationId: "createNivedan"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created nivedan object"
+        required: true
+        schema:
+          $ref: "#/definitions/Nivedan"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "Nivedan"
+      summary: "update Nivedan details"
+      description: ""
+      operationId: "updateNivedan"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "update Nivedan object"
+        required: true
+        schema:
+          $ref: "#/definitions/Nivedan"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/nivedan/{ID}:
+    get:
+      tags:
+      - "Nivedan"
+      summary: "Get Nivedan details"
+      description: "Get Nivedan data"
+      operationId: "getListOfNivedan"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: ID
+        in: path
+        description: Nivedan unique ID
+        type: "string"
+        required: true
+      responses:
+        default:
+          description: "successful operation"
+  /v1/ToDowork:
+    get:
+      tags:
+      - "ToDowork"
+      summary: "Get all ToDowork matching query"
+      description: "Get ToDowork data"
+      operationId: "getToDoworkList"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: admin
+        type: "string"
+        in: query
+        description: admin name
+        required: false
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "ToDowork"
+      summary: "Create ToDowork item"
+      description: ""
+      operationId: "createToDowork"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "ToDowork object"
+        required: true
+        schema:
+          $ref: "#/definitions/ToDoWork"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "ToDowork"
+      summary: "update ToDowork details"
+      description: ""
+      operationId: "updateToDowork"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "update ToDowork object"
+        required: true
+        schema:
+          $ref: "#/definitions/ToDoWork"
+      responses:
+        default:
+          description: "successful operation"
+  /v1/ToDowork/{ID}:
+    get:
+      tags:
+      - "ToDowork"
+      summary: "Get ToDowork details"
+      description: "Get ToDowork data"
+      operationId: "ToDowork detail"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: ID
+        in: path
+        description: ToDowork unique ID
+        type: "string"
+        required: true
+      responses:
+        default:
+          description: "successful operation"
+definitions:
+ Operator:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+      role:
+        type: "string"
+      secret:
+        type: "string"
+    xml:
+      name: "Operator"
+ Devotee:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+      familyCode:
+        type: "string"
+      Pincode:
+        type: "string"
+      District:
+        type: "string"
+      State:
+        type: "string"
+      nearestSatsangCentreDetails:
+        type: "string"
+      nivedan:
+        type: array
+        items: 
+          $ref: '#/definitions/Nivedan'
+    xml:
+      name: "devotee"
+ Nivedan:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      devoteeId:
+        type: "string"
+      description:
+        type: "string"  
+      priority:
+        type: "string"
+      type:
+        type: "string"
+      assignedTo:
+        type: "string"
+      response:
+        type: "string"
+      status:
+        type: "string"
+      date:
+        type: "string"
+    xml:
+      name: "Nivedan"  
+ Login:
+    type: "object"
+    properties:
+      userId:
+        type: "string"
+      secret:
+        type: "string"
+      sessionKey:
+        type: "string"
+    xml:
+      name: "Login"
+ ToDoWork:
+    type: "object"
+    properties:
+      itemId:
+        type: "string"
+      description:
+        type: "string"
+      priority:
+        type: "string"
+      admin:
+        type: "string"
+    xml:
+      name: "ToDoWork"
+ SpecialContact:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      PrimaryContact:
+        type: "string"
+      SecondaryContact:
+        type: "string"
+      State:
+        type: "string"
+      occupation:
+        type: "string"
+      email:
+        type: "string"
+    xml:
+      name: "SpecialContact"
